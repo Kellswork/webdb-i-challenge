@@ -11,8 +11,8 @@ const { validateAccountId, validateAccount } = require('./validateAccount');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  try {
-    const accounts = await getAccounts();
+    try {
+    const accounts = await getAccounts(req.query);
     if (accounts.length === 0) {
       return res.status(400).json({ message: 'no account has been created' });
     }

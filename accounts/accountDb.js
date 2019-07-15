@@ -1,7 +1,14 @@
 const db = require('../data/dbConfig');
 
-function getAccounts() {
-  return db('accounts');
+function getAccounts(query) {
+  const getAccounts = db('accounts');
+  if (query.limit) {
+    getAccounts.limit(query.limit);
+  }
+  if (query.sortby) {
+    getAccounts.orderBy(query.sortby, query.sortdir);
+  }
+  return getAccounts;
 }
 
 function getAccountById(id) {
